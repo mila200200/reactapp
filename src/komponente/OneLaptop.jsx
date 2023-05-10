@@ -1,6 +1,6 @@
 import React from "react";
 
-const OneLaptop = () => {
+const OneLaptop = ({ product, onAdd, inCart }) => {
   return (
     <div
       className="card"
@@ -8,26 +8,36 @@ const OneLaptop = () => {
         width: "18rem",
       }}
     >
-      <img
-        src="https://img.gigatron.rs/img/products/large/image6135e0e9b547f.png"
-        className="card-img-top"
-        alt="Neka slika"
-      />
+      <img src={product.img} className="card-img-top" alt="Neka slika" />
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a
-          href="#"
-          className="btn d-grid"
-          style={{
-            background: "#e6b3ff",
-          }}
-        >
-          Dodajte u korpu
-        </a>
+        <h5 className="card-title">{product.title}</h5>
+        {inCart === 1 ? (
+          <p className="card-text">{product.description}</p>
+        ) : (
+          <></>
+        )}
+        <div className="price">{product.price}</div>
+        {inCart === 1 ? (
+          <a
+            href="#"
+            className="btn d-grid"
+            style={{
+              background: "#e6b3ff",
+            }}
+            onClick={() => onAdd(product.id)}
+          >
+            Dodajte u korpu
+          </a>
+        ) : (
+          <div
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+            }}
+          >
+            Količina: {product.amount}
+          </div>
+        )}
       </div>
     </div>
   );
