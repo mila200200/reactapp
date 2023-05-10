@@ -6,7 +6,7 @@ const Cart = ({ products }) => {
       <h2 className="cart-h2">Vaša korpa</h2>
       <div class="cart okvir">
         {products.map((prod) => (
-          <OneLaptop product={prod} key={prod.id} inCart={0} />
+          <OneLaptop product={prod} key={prod.id} inCart={1} />
         ))}
       </div>
     </div>

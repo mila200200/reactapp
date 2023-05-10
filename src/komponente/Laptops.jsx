@@ -35,7 +35,7 @@ const Laptops = ({ /*products*/ onAdd, output }) => {
                   product={prod}
                   key={prod.id}
                   onAdd={onAdd}
-                  inCart={1}
+                  inCart={0}
                 />
               ))}
           </>
@@ -48,7 +48,7 @@ const Laptops = ({ /*products*/ onAdd, output }) => {
                   product={prod}
                   key={prod.id}
                   onAdd={onAdd}
-                  inCart={1}
+                  inCart={0}
                 />
               ))}
           </>
