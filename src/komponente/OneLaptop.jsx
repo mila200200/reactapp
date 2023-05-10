@@ -3,7 +3,7 @@ import React from "react";
 const OneLaptop = ({ product, onAdd, inCart }) => {
   return (
     <div
-      className="card"
+      className="col-12 col-sm-3 card"
       style={{
         width: "18rem",
       }}
