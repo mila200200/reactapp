@@ -1,13 +1,23 @@
 import "./App.css";
 import Laptops from "./komponente/Laptops";
 import NavMeni from "./komponente/NavMeni";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./komponente/Cart";
 import Home from "./komponente/Home";
 import Contact from "./komponente/Contact";
 
 function App() {
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState([]);
+  useEffect(() => {
+    setOutput([]);
+    products.filter((val) => {
+      if (val.title.toLowerCase().includes(input.toLowerCase())) {
+        setOutput((output) => [...output, val]);
+      }
+    });
+  }, [input]);
   const [cartNum, setCartNum] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
   const [products] = useState([
@@ -63,13 +73,15 @@ function App() {
   }
   return (
     <BrowserRouter className="App">
-      <NavMeni cartNum={cartNum} />
+      <NavMeni cartNum={cartNum} setInput={setInput} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/laptops"
-          element={<Laptops products={products} onAdd={addProduct} />}
+          element={
+            <Laptops products={products} onAdd={addProduct} output={output} />
+          }
         />
         <Route path="/cart" element={<Cart products={cartProducts} />} />
       </Routes>
